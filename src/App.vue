@@ -1,37 +1,48 @@
 <template>
   <v-app>
-    <v-navigation-drawer persistent v-model="drawer" enable-resize-watcher overflow>
+    <v-navigation-drawer v-model="drawer" temporary>
       <v-list dense>
-        <v-list-tile>
+        <v-list-tile v-for="item in menuItems" :key="item.title" :to="item.link">
           <v-list-tile-action>
-            <v-icon>supervisor_account</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>View Meetups</v-list-tile-title>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar>
       <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Vuejs Project</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer">Vuejs Project</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat><v-icon left>supervisor_account</v-icon>View Meetups</v-btn>
+        <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.link"><v-icon left>{{ item.icon }}</v-icon>{{ item.title }}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
-    <main></main>
+    <main>
+      <router-view></router-view>
+    </main>
   </v-app>
 </template>
 <script>
   export default {
     data () {
       return {
-        drawer: false
+        drawer: false,
+        menuItems: [
+          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
+          { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
+          { icon: 'person', title: 'Profile', link: '/profile' },
+          { icon: 'face', title: 'Sign up', link: '/signup' },
+          { icon: 'lock_open', title: 'Sign in', link: '/signin' }
+        ]
       }
     }
   }
 </script>
 <style lang="stylus">
-  @import './stylus/main'
+@import './stylus/main'
 </style>
