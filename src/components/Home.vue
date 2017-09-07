@@ -1,9 +1,9 @@
 <template>
-  <v-container>    
+  <v-container>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
-          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id">
+        <v-carousel style="cursor:pointer;">
+          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id" @click="onLoadMeetup(meetup.id)">
             <div class="title">{{ meetup.title }}</div>
           </v-carousel-item>
         </v-carousel>
@@ -30,14 +30,19 @@
     data () {
       return {
         meetups: [
-          { imageUrl: 'https://i.ytimg.com/vi/IheBymycomE/maxresdefault.jpg', id: 'Twice1', title: 'Twice1' },
-          { imageUrl: 'http://img.newspim.com/news/2016/06/13/1606130819387790.jpg', id: 'Twice2', title: 'Twice2' }
+          { imageUrl: 'http://www.balmuda.co.kr/greenfan-s/_img/features/natural_wind.jpg', id: '이미지1', title: 'Twice1' },
+          { imageUrl: 'https://windowsforum.kr/files/attach/images/2966154/024/338/002/d7765e849c020b0545ff3df4e2d6d0c0.JPG', id: '이미지2', title: 'Twice2' }
         ]
+      }
+    },
+    methods: {
+      onLoadMeetup (id) {
+        this.$router.push('/meetups/' + id)
       }
     }
   }
 </script>
-<style scoped>
+<style scoped></style>
 .title {
   position:absolute;
   bottom:50px;
@@ -47,6 +52,3 @@
   padding:20px;
 }
 </style>
-
-
-
