@@ -27,12 +27,9 @@
 
 <script>
   export default {
-    data () {
-      return {
-        meetups: [
-          { imageUrl: 'http://www.balmuda.co.kr/greenfan-s/_img/features/natural_wind.jpg', id: '이미지1', title: 'Twice1' },
-          { imageUrl: 'https://windowsforum.kr/files/attach/images/2966154/024/338/002/d7765e849c020b0545ff3df4e2d6d0c0.JPG', id: '이미지2', title: 'Twice2' }
-        ]
+    computed: {
+      meetups () {
+        return this.$store.getters.featuredMeetups
       }
     },
     methods: {

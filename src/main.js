@@ -3,6 +3,7 @@ import Vuetify from 'vuetify'
 import App from './App'
 import * as firebase from 'firebase'
 import router from './router'
+import { store } from './store'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
@@ -12,6 +13,7 @@ new Vue({
   el: '#app',
   router,
   render: h => h(App),
+  store,
   created () {
     firebase.initializeApp({
       apiKey: 'AIzaSyCCVozh75B_37lKlONUQtvc1NEAKlV9CJM',
