@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form>
+              <form @submit.prevent="onSignup">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field name="email" label="Mail" id="email" v-model="email" type="email" required></v-text-field>
@@ -51,7 +51,6 @@
     },
     methods: {
       onSignup () {
-        // Vuex
         console.log({email: this.email, password: this.password, confirmPassword: this.confirmPassword})
       }
     }
