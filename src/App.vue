@@ -21,7 +21,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar>
-      <v-toolbar-side-icon @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.native.stop="drawer = !drawer" class="hidden-sm-and-up"></v-toolbar-side-icon>
       <v-toolbar-title>
         <router-link to="/" tag="span" style="cursor: pointer">Vuejs Project</router-link>
       </v-toolbar-title>
