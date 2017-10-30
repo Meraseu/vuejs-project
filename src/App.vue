@@ -32,7 +32,9 @@
       </v-toolbar-items>
     </v-toolbar>
     <main>
-      <router-view></router-view>
+      <transition name="fade">
+        <router-view></router-view>
+      </transition>
     </main>
   </v-app>
 </template>
@@ -52,8 +54,8 @@
         if (this.userIsAuthenticated) {
           menuItems = [
             { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
-            { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
-            { icon: 'person', title: 'Profile', link: '/profile' }
+            { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' }
+            // { icon: 'person', title: 'Profile', link: '/profile' }
           ]
         }
         return menuItems

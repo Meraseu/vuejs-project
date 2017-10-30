@@ -12,7 +12,7 @@
                   <h6 class="primary--text">{{ meetup.title }}</h6>
                   <template v-if="true">
                     <v-spacer></v-spacer>
-                    <app-edit-meetup-details-dialog :meetup="meetup"></app-edit-meetup-details-dialog>
+                    <app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && !userIsCreator"></app-edit-meetup-details-dialog>
                   </template>
                 </v-card-title>
                 <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>

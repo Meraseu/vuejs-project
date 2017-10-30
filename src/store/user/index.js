@@ -133,13 +133,6 @@ export default {
     }
   },
   getters: {
-    loadedMeetup (state) {
-      return (meetupId) => {
-        return state.loadedMeetups.find((meetup) => {
-          return meetup.id === meetupId
-        })
-      }
-    },
     user (state) {
       return state.user
     }
