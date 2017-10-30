@@ -13,18 +13,18 @@
               <form @submit.prevent="onSignin">
                 <v-layout row>
                   <v-flex xs12>
-                    <v-text-field name="email" label="Mail" id="email" v-model="email" type="email" required></v-text-field>
+                    <v-text-field name="email" label="이메일" id="email" v-model="email" type="email" required></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
-                    <v-text-field name="password" label="Password" id="password" v-model="password" type="password" required></v-text-field>
+                    <v-text-field name="password" label="비밀번호" id="password" v-model="password" type="password" required></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
                   <v-flex xs12>
                     <v-btn type="submit" :disabled="loading" :loading="loading">
-                      Sign in
+                      로그인
                       <span slot="loader" class="custom-loader">
                         <v-icon light>cached</v-icon>
                       </span>
