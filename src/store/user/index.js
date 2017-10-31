@@ -108,6 +108,50 @@ export default {
       firebase.auth().signOut()
       commit('setUser', null)
     },
+    signUserInWithGoogle ({commit}) {
+      commit('setLoading', true)
+      commit('clearError')
+      let provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider).then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    signUserInWithFacebook ({commit}) {
+      commit('setLoading', true)
+      commit('clearError')
+      let provider = new firebase.auth.FacebookAuthProvider()
+      firebase.auth().signInWithPopup(provider).then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    signUserInWithTwitter ({commit}) {
+      // commit('setLoading', true)
+      // commit('clearError')
+      // let provider = new firebase.auth.TwitterAuthProvider();
+      // firebase.auth().signInWithPopup(provider).then(result => {
+      //   console.log(result)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      // })
+    },
+    signUserInWithGithub ({commit}) {
+      commit('setLoading', true)
+      commit('clearError')
+      let provider = new firebase.auth.GithubAuthProvider()
+      firebase.auth().signInWithPopup(provider).then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
     signUserIn ({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')

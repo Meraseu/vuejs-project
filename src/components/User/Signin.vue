@@ -1,3 +1,5 @@
+import * as firebase from 'firebase'
+
 <template>
   <v-container>
     <v-layout row v-if="error">
@@ -29,6 +31,26 @@
                         <v-icon light>cached</v-icon>
                       </span>
                     </v-btn>
+                  </v-flex>
+                </v-layout>
+                <v-layout row class="mt-4">
+                  <v-flex xs12>
+                    <p class="or" aria-hidden="true">
+                      <span>OR</span>
+                    </p>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs12>
+                    <h6 class="header-social">소셜계정으로 로그인</h6>
+                  </v-flex>
+                </v-layout>
+                <v-layout>
+                  <v-flex xs12>
+                    <v-btn class="facebook" @click="onSignInWithFacebook">facebook</v-btn>
+                    <v-btn class="google" @click="onSignInWithGoogle">google</v-btn>
+                    <v-btn class="github" @click="onSignInWithGithub">github</v-btn>
+                    <v-btn class="twitter" @click="onSignInWithTwitter">twitter</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -70,9 +92,49 @@
       onSignin () {
         this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
       },
+      onSignInWithGoogle () {
+        this.$store.dispatch('signUserInWithGoogle')
+      },
+      onSignInWithFacebook () {
+        this.$store.dispatch('signUserInWithFacebook')
+      },
+      onSignInWithTwitter () {
+        this.$store.dispatch('signUserInWithTwitter')
+      },
+      onSignInWithGithub () {
+        this.$store.dispatch('signUserInWithGithub')
+      },
       onDismissed () {
         this.$store.dispatch('clearError')
       }
     }
   }
 </script>
+<style>
+.or {
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  text-align:center;
+}
+.or span {
+  z-index:20;
+  position:relative;
+  background:#fff;
+  padding:0 15px;
+}
+.or:after {
+  content:'';
+  display:block;
+  z-index:10;
+  position:absolute;
+  left:0;
+  top:50%;
+  width:100%;
+  height:1px;
+  background-color:#ccc;
+}
+.header-social {
+  font-size:14px;
+}
+</style>
