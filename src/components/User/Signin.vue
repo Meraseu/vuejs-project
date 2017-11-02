@@ -1,5 +1,3 @@
-import * as firebase from 'firebase'
-
 <template>
   <v-container>
     <v-layout row v-if="error">
@@ -49,8 +47,6 @@ import * as firebase from 'firebase'
                   <v-flex xs12>
                     <v-btn class="facebook" @click="onSignInWithFacebook">facebook</v-btn>
                     <v-btn class="google" @click="onSignInWithGoogle">google</v-btn>
-                    <v-btn class="github" @click="onSignInWithGithub">github</v-btn>
-                    <v-btn class="twitter" @click="onSignInWithTwitter">twitter</v-btn>
                   </v-flex>
                 </v-layout>
               </form>
@@ -97,12 +93,6 @@ import * as firebase from 'firebase'
       },
       onSignInWithFacebook () {
         this.$store.dispatch('signUserInWithFacebook')
-      },
-      onSignInWithTwitter () {
-        this.$store.dispatch('signUserInWithTwitter')
-      },
-      onSignInWithGithub () {
-        this.$store.dispatch('signUserInWithGithub')
       },
       onDismissed () {
         this.$store.dispatch('clearError')

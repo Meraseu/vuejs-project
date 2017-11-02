@@ -29,11 +29,11 @@ new Vue({
   store,
   created () {
     firebase.initializeApp({
-      apiKey: 'AIzaSyCCVozh75B_37lKlONUQtvc1NEAKlV9CJM',
-      authDomain: 'vuejs-project-3b5b6.firebaseapp.com',
-      databaseURL: 'https://vuejs-project-3b5b6.firebaseio.com',
-      projectId: 'vuejs-project-3b5b6',
-      storageBucket: 'gs://vuejs-project-3b5b6.appspot.com'
+      apiKey: 'AIzaSyAudXlAGqfiN8Os9G83BVDQ6HKfrRdSpZ8',
+      authDomain: 'vuejs-a1fbf.firebaseapp.com',
+      databaseURL: 'https://vuejs-a1fbf.firebaseio.com',
+      projectId: 'vuejs-a1fbf',
+      storageBucket: 'vuejs-a1fbf.appspot.com'
     })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

@@ -53,8 +53,8 @@
         ]
         if (this.userIsAuthenticated) {
           menuItems = [
-            { icon: 'supervisor_account', title: '게시판 보기', link: '/meetups' },
-            { icon: 'room', title: '게시물 작성', link: '/meetup/new' }
+            { icon: 'supervisor_account', title: '리스트', link: '/meetups' },
+            { icon: 'create', title: '작성', link: '/meetup/new' }
             // { icon: 'person', title: 'Profile', link: '/profile' }
           ]
         }
@@ -62,6 +62,11 @@
       },
       userIsAuthenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      },
+      getUser () {
+        console.log('getUser')
+        console.log(this.$store.user)
+        return this.$store.getters.user
       }
     },
     methods: {

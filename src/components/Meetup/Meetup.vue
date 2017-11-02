@@ -12,17 +12,18 @@
                   <h6 class="primary--text">{{ meetup.title }}</h6>
                   <template v-if="true">
                     <v-spacer></v-spacer>
-                    <app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && !userIsCreator"></app-edit-meetup-details-dialog>
+                    <!--<app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && !userIsCreator"></app-edit-meetup-details-dialog>-->
+                    <app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && userIsCreator"></app-edit-meetup-details-dialog>
                   </template>
                 </v-card-title>
                 <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>
                 <v-card-text>
                   <div class="info--text">{{ meetup.date | date }} - {{ meetup.location }}</div>
+                  <div class="mb-3">{{ meetup.description }}</div>
                   <div>
                     <app-edit-meetup-date-dialog :meetup="meetup" v-if="userIsCreator"></app-edit-meetup-date-dialog>
                     <app-edit-meetup-time-dialog :meetup="meetup" v-if="userIsCreator"></app-edit-meetup-time-dialog>
                   </div>
-                  <div>{{ meetup.description }}</div>
                 </v-card-text>
                 <!--<v-card-actions>
                   <v-spacer></v-spacer>
@@ -48,7 +49,7 @@
         if (!this.userIsAuthenticated) {
           return false
         }
-        return this.$store.getters.user.id === this.meetup.creatorId
+        return this.$store.getters.user.id === this.meetup.createId
       },
       loading () {
         return this.$store.getters.loading

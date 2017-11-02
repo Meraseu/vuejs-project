@@ -53,7 +53,7 @@ export default {
     },
     signUserUp ({commit}, payload) {
       commit('setLoading', true)
-      commit('cleareError')
+      commit('clearError')
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
@@ -68,7 +68,8 @@ export default {
         )
         .catch(
           error => {
-            commit('setLoading', true)
+            console.log(1)
+            commit('setLoading', false)
             commit('setError', error)
             console.log(error)
           }
@@ -116,6 +117,8 @@ export default {
         console.log(result)
       })
       .catch(error => {
+        commit('setLoading', false)
+        commit('setError', error)
         console.log(error)
       })
     },
@@ -127,28 +130,8 @@ export default {
         console.log(result)
       })
       .catch(error => {
-        console.log(error)
-      })
-    },
-    signUserInWithTwitter ({commit}) {
-      // commit('setLoading', true)
-      // commit('clearError')
-      // let provider = new firebase.auth.TwitterAuthProvider();
-      // firebase.auth().signInWithPopup(provider).then(result => {
-      //   console.log(result)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      // })
-    },
-    signUserInWithGithub ({commit}) {
-      commit('setLoading', true)
-      commit('clearError')
-      let provider = new firebase.auth.GithubAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(result => {
-        console.log(result)
-      })
-      .catch(error => {
+        commit('setLoading', false)
+        commit('setError', error)
         console.log(error)
       })
     },

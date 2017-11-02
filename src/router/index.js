@@ -8,6 +8,7 @@ import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
 import Meetup from '@/components/Meetup/Meetup'
 import AuthGuard from './auth-guard'
+import clearError from './clearError'
 
 Vue.use(Router)
 
@@ -49,7 +50,8 @@ export default new Router({
     {
       path: '/signin',
       name: 'Signin',
-      component: Signin
+      component: Signin,
+      beforeEnter: clearError
     }
   ],
   mode: 'history'
