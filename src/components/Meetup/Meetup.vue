@@ -10,10 +10,12 @@
             <v-card>
                 <v-card-title>
                   <h6 class="primary--text">{{ meetup.title }}</h6>
+                  <v-spacer></v-spacer>
                   <template v-if="true">
-                    <v-spacer></v-spacer>
-                    <!--<app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && !userIsCreator"></app-edit-meetup-details-dialog>-->
                     <app-edit-meetup-details-dialog :meetup="meetup" v-if="userIsAuthenticated && userIsCreator"></app-edit-meetup-details-dialog>
+                  </template>
+                  <template v-if="true">
+                    <app-delete-meetup-dialog :meetup="meetup" v-if="userIsAuthenticated && userIsCreator"></app-delete-meetup-dialog>
                   </template>
                 </v-card-title>
                 <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>

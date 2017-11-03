@@ -12,6 +12,8 @@ export default {
       }
       state.user.registeredMeetups.push(id)
       state.user.fbKeys[id] = payload.fbKey
+      state.user.photo = payload.photo
+      state.user.name = payload.email || payload.displayName
     },
     unregisterUserFromMeetup (state, payload) {
       const registeredMeetups = state.user.registeredMeetups
@@ -60,26 +62,28 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
+              name: user.email,
               registeredMeetups: [],
-              fbKeys: {}
+              fbKeys: {},
+              photo: ''
             }
             commit('setUser', newUser)
           }
         )
         .catch(
           error => {
-            console.log(1)
             commit('setLoading', false)
             commit('setError', error)
-            console.log(error)
           }
         )
     },
     autoSignIn ({commit}, payload) {
       commit('setUser', {
         id: payload.uid,
+        name: payload.email,
         registeredMeetups: [],
-        fbKeys: {}
+        fbKeys: {},
+        photo: payload.photoURL
       })
     },
     fetchUserData ({commit, getters}) {
@@ -94,8 +98,10 @@ export default {
         }
         const updatedUser = {
           id: getters.user.id,
+          name: getters.user.name,
           registeredMeetups: registeredMeetups,
-          fbKeys: swappedPairs
+          fbKeys: swappedPairs,
+          photo: getters.user.photo
         }
         commit('setLoading', false)
         commit('setUser', updatedUser)
@@ -114,12 +120,19 @@ export default {
       commit('clearError')
       let provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider).then(result => {
-        console.log(result)
+        commit('setLoading', false)
+        const newUser = {
+          id: result.user.uid,
+          name: result.user.displayName,
+          registeredMeetups: [],
+          fbKeys: {},
+          photo: result.user.photoURL
+        }
+        commit('setUser', newUser)
       })
       .catch(error => {
         commit('setLoading', false)
         commit('setError', error)
-        console.log(error)
       })
     },
     signUserInWithFacebook ({commit}) {
@@ -127,7 +140,15 @@ export default {
       commit('clearError')
       let provider = new firebase.auth.FacebookAuthProvider()
       firebase.auth().signInWithPopup(provider).then(result => {
-        console.log(result)
+        commit('setLoading', false)
+        const newUser = {
+          id: result.user.uid,
+          name: result.user.displayName,
+          registeredMeetups: [],
+          fbKeys: {},
+          photo: result.user.photoURL
+        }
+        commit('setUser', newUser)
       })
       .catch(error => {
         commit('setLoading', false)
@@ -144,8 +165,10 @@ export default {
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
+              name: user.email,
               registeredMeetups: [],
-              fbKeys: {}
+              fbKeys: {},
+              photo: ''
             }
             commit('setUser', newUser)
           }

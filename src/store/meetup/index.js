@@ -24,6 +24,10 @@ export default {
       if (payload.date) {
         meetup.date = payload.date
       }
+    },
+    deleteMeetup (state, payload) {
+      const meetupIndex = state.loadedMeetups.findIndex(x => x.id === payload.id)
+      state.loadedMeetups.splice(meetupIndex, 1)
     }
   },
   actions: {
@@ -109,6 +113,18 @@ export default {
         commit('setLoading', false)
       })
     },
+    deleteMeetupData ({commit}, payload) {
+      commit('setLoading', true)
+      firebase.database().ref('/meetups').child(payload.id).remove()
+      .then(() => {
+        commit('setLoading', false)
+        commit('deleteMeetup', payload)
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setLoading', false)
+      })
+    },
     fetchUserData ({commit, getters}) {
       commit('setLoading', true)
       firebase.database().ref('/users/' + getters.user.id + '/registrations/').once('value').then(data => {
@@ -121,8 +137,10 @@ export default {
         }
         const updatedUser = {
           id: getters.user.id,
+          name: getters.user.name,
           registeredMeetups: registeredMeetups,
-          fbKeys: swappedPairs
+          fbKeys: swappedPairs,
+          photo: getters.user.photo
         }
         commit('setLoading', false)
         commit('setUser', updatedUser)
