@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "vuejs-a1fbf",
-    "yes": "vuejs-a1fbf"
+    "yes": "vuejs-a1fbf",
+    "vuejs": "vuejs-a1fbf"
   }
 }

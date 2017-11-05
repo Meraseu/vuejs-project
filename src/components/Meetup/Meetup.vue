@@ -45,13 +45,15 @@
         return this.$store.getters.loadedMeetup(this.id)
       },
       userIsAuthenticated () {
+        console.log(this.$store.getters.user !== null && this.$store.getters.user !== undefined)
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       },
       userIsCreator () {
         if (!this.userIsAuthenticated) {
           return false
         }
-        return this.$store.getters.user.id === this.meetup.createId
+        console.log(this.$store.getters.user.id, this.meetup.creatorId)
+        return this.$store.getters.user.id === this.meetup.creatorId
       },
       loading () {
         return this.$store.getters.loading

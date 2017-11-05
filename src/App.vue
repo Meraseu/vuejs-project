@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-tile v-if="userIsAuthenticated" @click="onLogout">
           <v-list-tile-action>
-            <v-avatar size="18px" slot="activator" v-if="userIsAuthenticated && getUser.photo">
+            <v-avatar size="23px" slot="activator" v-if="userIsAuthenticated && getUser.photo">
               <img :src="getUser.photo" alt="">
             </v-avatar>
             <v-icon v-else>account_circle</v-icon>
