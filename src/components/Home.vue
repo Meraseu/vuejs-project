@@ -8,7 +8,7 @@
     <v-layout row wrap class="mt-2" v-if="!loading">
       <v-flex xs12>
         <v-carousel style="cursor:pointer;">
-          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id" @click="onLoadMeetup(meetup.id)" transition="fade">
+          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id" @click="onLoadMeetup(meetup.id)" interval="3000" lazy="true">
             <div class="title">{{ meetup.title }}</div>
           </v-carousel-item>
         </v-carousel>

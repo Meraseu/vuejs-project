@@ -16,7 +16,7 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat :to="'/meetups/' + meetup.id"><v-icon left>arrow_forward</v-icon>View Meetup</v-btn>
+                  <v-btn flat :to="'/meetups/' + meetup.id"><v-icon left>arrow_forward</v-icon>상세보기</v-btn>
                 </v-card-actions>
               </v-flex>
             </v-layout>

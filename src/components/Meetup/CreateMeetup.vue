@@ -93,6 +93,16 @@
           date.setMinutes(this.time.getMinutes())
         }
         return date
+      },
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    watch: {
+      user (value) {
+        if (value === null || value === undefined) {
+          this.$router.push('/meetups')
+        }
       }
     },
     methods: {

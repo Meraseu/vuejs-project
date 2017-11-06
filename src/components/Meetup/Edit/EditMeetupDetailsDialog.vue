@@ -7,7 +7,7 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card-title>Edit Meetup</v-card-title>
+            <v-card-title>수정</v-card-title>
           </v-flex>
         </v-layout>
         <v-divider></v-divider>
@@ -16,13 +16,13 @@
             <v-card-text>
               <v-text-field
                 name="title"
-                label="Title"
+                label="제목"
                 id="title"
                 v-model="editedTitle"
                 required></v-text-field>
               <v-text-field
                 name="description"
-                label="Description"
+                label="내용"
                 id="description"
                 multi-line
                 v-model="editedDescription"
@@ -37,8 +37,8 @@
               <v-btn
                 flat
                 class="blue--text darken-1"
-                @click="editDialog = false">Close</v-btn>
-              <v-btn flat class="blue--text darken-1" @click="onSaveChanges">Save</v-btn>
+                @click="editDialog = false">닫기</v-btn>
+              <v-btn flat class="blue--text darken-1" @click="onSaveChanges">저장</v-btn>
             </v-card-actions>
           </v-flex>
         </v-layout>

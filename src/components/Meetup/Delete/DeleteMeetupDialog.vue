@@ -7,27 +7,7 @@
       <v-container>
         <v-layout row wrap>
           <v-flex xs12>
-            <v-card-title>Delete Meetup</v-card-title>
-          </v-flex>
-        </v-layout>
-        <v-divider></v-divider>
-        <v-layout row wrap>
-          <v-flex xs12>
-            <v-card-text>
-              <v-text-field
-                name="title"
-                label="Title"
-                id="title"
-                v-model="editedTitle"
-                required></v-text-field>
-              <v-text-field
-                name="description"
-                label="Description"
-                id="description"
-                multi-line
-                v-model="editedDescription"
-                required></v-text-field>
-            </v-card-text>
+            <v-card-text>정말로 삭제하시겠습니까?</v-card-text>
           </v-flex>
         </v-layout>
         <v-divider></v-divider>
@@ -37,8 +17,8 @@
               <v-btn
                 flat
                 class="blue--text darken-1"
-                @click="deleteDialog = false">No</v-btn>
-              <v-btn flat class="blue--text darken-1" @click="onDelete">Yes</v-btn>
+                @click="deleteDialog = false">아니요</v-btn>
+              <v-btn flat class="blue--text darken-1" @click="onDelete">예</v-btn>
             </v-card-actions>
           </v-flex>
         </v-layout>
