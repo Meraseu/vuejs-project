@@ -102,27 +102,20 @@
 </script>
 <style>
 .or {
-  position:relative;
-  overflow:hidden;
-  width:100%;
-  text-align:center;
+  text-transform: uppercase;
+  line-height: 2;
+  display: grid;  
+  grid-template-columns: 1fr auto 1fr;
+  grid-gap: 20px;
+  align-items: center;
 }
-.or span {
-  z-index:20;
-  position:relative;
-  background:#fff;
-  padding:0 15px;
-}
+.or:before,
 .or:after {
-  content:'';
-  display:block;
-  z-index:10;
-  position:absolute;
-  left:0;
-  top:50%;
-  width:100%;
-  height:1px;
-  background-color:#ccc;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ccc;
 }
 .header-social {
   font-size:14px;
