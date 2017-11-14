@@ -133,16 +133,6 @@ export default {
           commit('setLoading', false)
         })
       })
-
-      // firebase.database().ref('/meetups').child(payload.id).remove()
-      // .then(() => {
-      //   commit('setLoading', false)
-      //   commit('deleteMeetup', payload)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      //   commit('setLoading', false)
-      // })
     },
     fetchUserData ({commit, getters}) {
       commit('setLoading', true)
