@@ -65,6 +65,10 @@ export default {
         creatorId: getters.user.id
       }
       let imageUrl
+<<<<<<< HEAD
+=======
+      let imageName
+>>>>>>> origin/develop
       let key
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
@@ -74,11 +78,20 @@ export default {
         .then(key => {
           const filename = payload.image.name
           const ext = filename.slice(filename.lastIndexOf('.'))
+<<<<<<< HEAD
           return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
         })
         .then(fileData => {
           imageUrl = fileData.metadata.downloadURLs[0]
           return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl})
+=======
+          imageName = key + '.' + ext
+          return firebase.storage().ref('meetups/' + imageName).put(payload.image)
+        })
+        .then(fileData => {
+          imageUrl = fileData.metadata.downloadURLs[0]
+          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl, imageName: imageName})
+>>>>>>> origin/develop
         })
         .then(() => {
           commit('createMeetup', {
@@ -115,6 +128,7 @@ export default {
     },
     deleteMeetupData ({commit}, payload) {
       commit('setLoading', true)
+<<<<<<< HEAD
       firebase.database().ref('/meetups').child(payload.id).remove()
       .then(() => {
         commit('setLoading', false)
@@ -124,6 +138,34 @@ export default {
         console.log(error)
         commit('setLoading', false)
       })
+=======
+      firebase.database().ref('meetups/' + payload.id).once('value')
+      .then(data => {
+        const imageName = data.val().imageName
+        firebase.storage().ref('meetups/' + imageName).delete()
+        .then(() => {
+          firebase.database().ref('/meetups').child(payload.id).remove()
+          .then(() => {
+            commit('deleteMeetup', payload)
+            commit('setLoading', false)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
+        })
+      })
+
+      // firebase.database().ref('/meetups').child(payload.id).remove()
+      // .then(() => {
+      //   commit('setLoading', false)
+      //   commit('deleteMeetup', payload)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      //   commit('setLoading', false)
+      // })
+>>>>>>> origin/develop
     },
     fetchUserData ({commit, getters}) {
       commit('setLoading', true)

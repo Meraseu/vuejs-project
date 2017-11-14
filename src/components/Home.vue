@@ -49,7 +49,11 @@
     }
   }
 </script>
+<<<<<<< HEAD
 <style scoped></style>
+=======
+<style lang="scss" scoped></style>
+>>>>>>> origin/develop
 .title {
   position:absolute;
   bottom:50px;

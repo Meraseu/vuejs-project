@@ -102,6 +102,7 @@
 </script>
 <style>
 .or {
+<<<<<<< HEAD
   position:relative;
   overflow:hidden;
   width:100%;
@@ -123,6 +124,22 @@
   width:100%;
   height:1px;
   background-color:#ccc;
+=======
+  text-transform: uppercase;
+  line-height: 2;
+  display: grid;  
+  grid-template-columns: 1fr auto 1fr;
+  grid-gap: 20px;
+  align-items: center;
+}
+.or:before,
+.or:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+>>>>>>> origin/develop
 }
 .header-social {
   font-size:14px;
