@@ -104,7 +104,7 @@
 .or {
   text-transform: uppercase;
   line-height: 2;
-  display: grid;
+  display: grid;  
   grid-template-columns: 1fr auto 1fr;
   grid-gap: 20px;
   align-items: center;
