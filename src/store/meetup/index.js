@@ -65,10 +65,7 @@ export default {
         creatorId: getters.user.id
       }
       let imageUrl
-<<<<<<< HEAD
-=======
       let imageName
->>>>>>> origin/develop
       let key
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
@@ -78,20 +75,12 @@ export default {
         .then(key => {
           const filename = payload.image.name
           const ext = filename.slice(filename.lastIndexOf('.'))
-<<<<<<< HEAD
-          return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
-        })
-        .then(fileData => {
-          imageUrl = fileData.metadata.downloadURLs[0]
-          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl})
-=======
           imageName = key + '.' + ext
           return firebase.storage().ref('meetups/' + imageName).put(payload.image)
         })
         .then(fileData => {
           imageUrl = fileData.metadata.downloadURLs[0]
           return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl, imageName: imageName})
->>>>>>> origin/develop
         })
         .then(() => {
           commit('createMeetup', {
