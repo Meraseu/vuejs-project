@@ -65,6 +65,7 @@ export default {
         creatorId: getters.user.id
       }
       let imageUrl
+      let imageName
       let key
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
@@ -74,11 +75,12 @@ export default {
         .then(key => {
           const filename = payload.image.name
           const ext = filename.slice(filename.lastIndexOf('.'))
-          return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
+          imageName = key + '.' + ext
+          return firebase.storage().ref('meetups/' + imageName).put(payload.image)
         })
         .then(fileData => {
           imageUrl = fileData.metadata.downloadURLs[0]
-          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl})
+          return firebase.database().ref('meetups').child(key).update({imageUrl: imageUrl, imageName: imageName})
         })
         .then(() => {
           commit('createMeetup', {
@@ -115,15 +117,32 @@ export default {
     },
     deleteMeetupData ({commit}, payload) {
       commit('setLoading', true)
-      firebase.database().ref('/meetups').child(payload.id).remove()
-      .then(() => {
-        commit('setLoading', false)
-        commit('deleteMeetup', payload)
+      firebase.database().ref('meetups/' + payload.id).once('value')
+      .then(data => {
+        const imageName = data.val().imageName
+        firebase.storage().ref('meetups/' + imageName).delete()
+        .then(() => {
+          firebase.database().ref('/meetups').child(payload.id).remove()
+          .then(() => {
+            commit('deleteMeetup', payload)
+            commit('setLoading', false)
+          })
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
+        })
       })
-      .catch(error => {
-        console.log(error)
-        commit('setLoading', false)
-      })
+
+      // firebase.database().ref('/meetups').child(payload.id).remove()
+      // .then(() => {
+      //   commit('setLoading', false)
+      //   commit('deleteMeetup', payload)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      //   commit('setLoading', false)
+      // })
     },
     fetchUserData ({commit, getters}) {
       commit('setLoading', true)

@@ -49,7 +49,7 @@
     }
   }
 </script>
-<style scoped></style>
+<style lang="scss" scoped></style>
 .title {
   position:absolute;
   bottom:50px;
